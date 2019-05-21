@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import Timer from './components/Timer';
 import { Consumer } from './components/Context';
+import Question from './components/Question';
+import QuestionResult from './components/QuestionResult';
+import AnswerForm from './components/AnswerForm';
 
 function App() {
   return(
@@ -19,12 +22,15 @@ function App() {
             page=<div>
                   <Timer context={context} />
                   <h1>This is a question</h1>
+                  <Question />
+                  <AnswerForm />
                 </div>;
             break;
           case "between": 
             page=<div>
                   <Timer context={context} />
                   <h1>This is between questions</h1>
+                  <QuestionResult />
                 </div>;
             break;
           case "end": 

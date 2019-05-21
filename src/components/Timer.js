@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Context } from './Context';
 
 
  
 class Timer extends Component {
 
     state =  {
-        timeRemaining: 10
+        timeRemaining: 30
     };
 
     componentDidMount() {
@@ -14,27 +15,27 @@ class Timer extends Component {
     }
 
     componentWillUnmount() {
+        console.log("unmounting");
         clearInterval(this.intervalID);
-
     }
 
     tick =  () => {
         if(this.state.timeRemaining===1) {
             clearInterval(this.intervalID);
-            if(this.props.context.stage==="between" && this.props.context.questionNumber===this.props.context.questions.length) {
-                this.setState({timeRemaining: 10}, () => {
-                    this.props.context.actions.stageChange("end");
+            if(this.context.stage==="between" && this.context.questionNumber===this.context.questions.length) {
+                this.setState({timeRemaining: 30}, () => {
+                    this.context.actions.stageChange("end");
                 });         
             }
-            else if (this.props.context.stage==="between") {
-                this.setState({timeRemaining: 10}, ()=>{
-                    this.props.context.actions.stageChange("question");
+            else if (this.context.stage==="between") {
+                this.setState({timeRemaining: 30}, ()=>{
+                    this.context.actions.stageChange("question");
                     this.intervalID = setInterval(() => this.tick(), 1000);
                 });    
             }
-            else if (this.props.context.stage==="question") {
+            else if (this.context.stage==="question") {
                 this.setState({timeRemaining: 5}, ()=> {
-                    this.props.context.actions.stageChange("between", true);
+                    this.context.actions.stageChange("between", true);
                     this.intervalID = setInterval(() => this.tick(), 1000);
                 });                
             }
@@ -46,10 +47,12 @@ class Timer extends Component {
     render() {
         return (
             <div>
-                {this.props.context.stage==="question"? <h1>{this.state.timeRemaining}</h1>: null}
+                {this.context.stage==="question"? <h1>{this.state.timeRemaining}</h1>: null}
             </div>
         );
     }
 }
+
+Timer.contextType = Context;
 
 export default Timer;

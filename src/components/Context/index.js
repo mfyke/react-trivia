@@ -20,6 +20,10 @@ export class Provider extends Component {
         timeRemaining: 30
     }
 
+    handleStart = () => {
+        this.setState({stage: "question"});
+    }
+
     handleQuestionAnswer = (choice) => {
         if(parseInt(choice)===this.state.questions[this.state.questionNumber].correctAnswer) {
             this.setState({correct: this.state.correct+1, stage: "between", questionNumber: this.state.questionNumber+1, timeRemaining: 5});
@@ -53,6 +57,7 @@ export class Provider extends Component {
                 correct: this.state.correct,
                 timeRemaining: this.state.timeRemaining,
                 actions: {
+                    start: this.handleStart,
                     questionAnswer: this.handleQuestionAnswer,
                     tick: this.tick
                 }

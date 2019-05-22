@@ -6,6 +6,7 @@ import { Consumer } from './components/Context';
 import Question from './components/Question';
 import QuestionResult from './components/QuestionResult';
 import AnswerForm from './components/AnswerForm';
+import Start from './components/Start';
 
 function App() {
   return(
@@ -14,9 +15,7 @@ function App() {
         let page;
         switch(context.stage) {
           case "beginning":
-            page=<div>
-                  <h1>This is the begining</h1>
-                </div>;
+            page=<Start />;
             break;
           case "question":
             page=<div>

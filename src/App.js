@@ -20,7 +20,7 @@ function App() {
             break;
           case "question":
             page=<div>
-                  <Timer context={context} />
+                  <Timer />
                   <h1>This is a question</h1>
                   <Question />
                   <AnswerForm />
@@ -28,7 +28,7 @@ function App() {
             break;
           case "between": 
             page=<div>
-                  <Timer context={context} />
+                  <Timer />
                   <h1>This is between questions</h1>
                   <QuestionResult />
                 </div>;

@@ -48,27 +48,27 @@ class RadioButtonsGroup extends React.Component {
                         onChange={this.handleChange}
                     >
                         <FormControlLabel
-                        value="female"
+                        value="0"
                         control={<Radio color="primary" />}
-                        label="Female"
+                        label={context.questions[context.questionNumber].answers[0]}
                         labelPlacement="start"
                         />
                         <FormControlLabel
-                        value="male"
+                        value="1"
                         control={<Radio color="primary" />}
-                        label="Male"
+                        label={context.questions[context.questionNumber].answers[1]}
                         labelPlacement="start"
                         />
                         <FormControlLabel
-                        value="other"
+                        value="2"
                         control={<Radio color="primary" />}
-                        label="Other"
+                        label={context.questions[context.questionNumber].answers[2]}
                         labelPlacement="start"
                         />
                         <FormControlLabel
-                        value="answerD"
-                        control={<Radio />}
-                        label="answerD"
+                        value="3"
+                        control={<Radio color="primary" />}
+                        label={context.questions[context.questionNumber].answers[3]}
                         labelPlacement="start"
                         />
                     </RadioGroup>

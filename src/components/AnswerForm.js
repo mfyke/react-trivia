@@ -25,12 +25,8 @@ class RadioButtonsGroup extends React.Component {
   };
 
   handleChange = event => {
-    this.setState({ value: event.target.value });
+    this.setState({ value: event.target.value }, ()=>{setTimeout(()=>{this.context.actions.questionAnswer(this.state.value)}, 300)});
   };
-
-//   componentDidMount() {
-//       console.log(this.context);
-//   }
 
   render() {
     const { classes } = this.props;

@@ -6,12 +6,10 @@ import { Context } from './Context';
 class Timer extends Component {
 
     componentDidMount() {
-        console.log("YOOOOOOOO");
         this.intervalID = setInterval(() => this.context.actions.tick(), 1000); 
     }
 
     componentWillUnmount() {
-        console.log("unmounting");
         clearInterval(this.intervalID);
     }
 

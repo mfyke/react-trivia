@@ -14,10 +14,51 @@ export class Provider extends Component {
             answers: ["Mac", "Frank", "Dee", "Cricket"],
             correctAnswer: 0,
             image: "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-its-always-sunny-in-philadelphia-rob-mcelhenney.jpg"
+          }, {
+            question: "Which character said: That's bullshit, 'cause I'm a better smasher than you guys! I should be on the head of the smashing team! You wanna have a smash-off?",
+            answers: ["Artemis", "Doyle McPoyle", "Mac", "Dee"],
+            correctAnswer: 2,
+            image: "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-its-always-sunny-in-philadelphia-rob-mcelhenney.jpg"
+          }, {
+            question: "Which character said: Oh not too much, Charlie is using you to prove that he's not racist, and then he asked me out on a date?",
+            answers: ["Dee", "Ruby Taft", "The Waitress", "Artemis"],
+            correctAnswer: 2,
+            image: "https://d1o51r9qdgnnlz.cloudfront.net/static_image/d93b4f7a-4b7f-4a11-82f3-4041a23c156e/static.jpg"
+          }, {
+            question: "Which character said: Hello. Who is this? Who?... Who is...? I don't know that name. Who? Who? Oh, oh, Waitress. Why didn't you just say that?",
+            answers: ["Dee", "Frank", "Charlie", "Dennis"],
+            correctAnswer: 3,
+            image: "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-its-always-sunny-in-philadelphia-glenn-howerton.jpg"
+          }, {
+            question: "Which character said: Because Dennis is a bastard man!",
+            answers: ["Dennis", "Dee", "Charlie", "Mac"],
+            correctAnswer: 0,
+            image: "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-its-always-sunny-in-philadelphia-glenn-howerton.jpg"
+          }, {
+            question: "Which character said: Did you fuck my mom, Santa Claus? Did you fuck my mom? Did you fuck her? DID YOU FUCK MY FUCKING MOM? DID YOU FUCK MY MOM, SANTA? AAAAH!",
+            answers: ["'Da Maniac", "Charlie", "Mac", "Dennis"],
+            correctAnswer: 1,
+            image: "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-its-always-sunny-in-philadelphia-charlie-day.jpg"
+          }, {
+            question: "Which character said: Hey, did he send you any dick pics? 'Cause it could be a mess down there.",
+            answers: ["Dee", "Artemis", "Mac", "The Waitress"],
+            correctAnswer: 1,
+            image: "http://i1.sndcdn.com/artworks-000225331003-evp1yy-original.jpg"
+          }, {
+            question: "Which character said: Mm. I have contained my rage for as long as possible, but I shall unleash my fury upon you like the crashing of a thousand waves! Begone, vile man! Begone from me! A starter car? This car is a finisher car! A transporter of gods! The golden god! I am untethered, and my rage knows no bounds!",
+            answers: ["Dee", "Frank", "Cricket", "Dennis"],
+            correctAnswer: 3,
+            image: "https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/p-its-always-sunny-in-philadelphia-glenn-howerton.jpg"
+          }, {
+            question: "Which character said: Hey do you guys mind if I go into the bathroom and smoke some PCP?",
+            answers: ["Mac", "Cricket", "Charlie", "Dennis"],
+            correctAnswer: 1,
+            image: "https://www.itsalways.com/wp-content/uploads/2017/07/Rickety-Cricket.jpg"
           }],
         stage: "beginning",
         correct: 0,
-        timeRemaining: 30
+        timeRemaining: 30,
+        questionCorrect: false
     }
 
     handleStart = () => {
@@ -26,9 +67,9 @@ export class Provider extends Component {
 
     handleQuestionAnswer = (choice) => {
         if(parseInt(choice)===this.state.questions[this.state.questionNumber].correctAnswer) {
-            this.setState({correct: this.state.correct+1, stage: "between", questionNumber: this.state.questionNumber+1, timeRemaining: 5});
+            this.setState({correct: this.state.correct+1, stage: "between", questionNumber: this.state.questionNumber+1, timeRemaining: 5, questionCorrect: true});
         } else {
-            this.setState({stage: "between", questionNumber: this.state.questionNumber+1, timeRemaining: 5});
+            this.setState({stage: "between", questionNumber: this.state.questionNumber+1, timeRemaining: 5, questionCorrect: false});
         }
     }
 
@@ -39,13 +80,13 @@ export class Provider extends Component {
     tick =  () => {
         if(this.state.timeRemaining===1) {
             if(this.state.stage==="between" && this.state.questionNumber===this.state.questions.length) {
-                this.setState({timeRemaining: 30, stage: "end"});         
+                this.setState({timeRemaining: 30, stage: "end", questionCorrect: false});         
             }
             else if (this.state.stage==="between") {
                 this.setState({timeRemaining: 30, stage:"question"});    
             }
             else if (this.state.stage==="question") {
-                this.setState({timeRemaining: 5, stage: "between", questionNumber: this.state.questionNumber+1});                
+                this.setState({timeRemaining: 5, stage: "between", questionNumber: this.state.questionNumber+1, questionCorrect: false});                
             }
         } else{
             this.setState({timeRemaining: this.state.timeRemaining-1});
@@ -60,6 +101,7 @@ export class Provider extends Component {
                 stage: this.state.stage,
                 correct: this.state.correct,
                 timeRemaining: this.state.timeRemaining,
+                questionCorrect: this.state.questionCorrect,
                 actions: {
                     start: this.handleStart,
                     questionAnswer: this.handleQuestionAnswer,

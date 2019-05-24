@@ -7,6 +7,7 @@ import Question from './components/Question';
 import QuestionResult from './components/QuestionResult';
 import AnswerForm from './components/AnswerForm';
 import Start from './components/Start';
+import GameResult from './components/GameResult';
 
 function App() {
   return(
@@ -20,7 +21,6 @@ function App() {
           case "question":
             page=<div>
                   <Timer />
-                  <h1>This is a question</h1>
                   <Question />
                   <AnswerForm />
                 </div>;
@@ -28,13 +28,12 @@ function App() {
           case "between": 
             page=<div>
                   <Timer />
-                  <h1>This is between questions</h1>
                   <QuestionResult />
                 </div>;
             break;
           case "end": 
             page=<div>
-                  <h1>This is the end of the game</h1>
+                  <GameResult />
                 </div>;
             break;
           default: 

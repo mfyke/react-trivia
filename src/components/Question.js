@@ -6,7 +6,9 @@ const Question = () => {
         <Consumer>
             {context=>{
                 return (
-                    <h1>{context.questions[context.questionNumber].question}</h1>
+                    <div>
+                        <h1 className="question">{context.questions[context.questionNumber].question}</h1>
+                    </div>
                 );
             }}
         </Consumer>

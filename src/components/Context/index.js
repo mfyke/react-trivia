@@ -32,6 +32,10 @@ export class Provider extends Component {
         }
     }
 
+    handleRestart = () => {
+        this.setState({questionNumber: 0, correct: 0, stage:"question"});
+    }
+
     tick =  () => {
         if(this.state.timeRemaining===1) {
             if(this.state.stage==="between" && this.state.questionNumber===this.state.questions.length) {
@@ -59,7 +63,8 @@ export class Provider extends Component {
                 actions: {
                     start: this.handleStart,
                     questionAnswer: this.handleQuestionAnswer,
-                    tick: this.tick
+                    tick: this.tick,
+                    restart: this.handleRestart
                 }
             }}>
                 {this.props.children}

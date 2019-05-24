@@ -61,8 +61,19 @@ export class Provider extends Component {
         questionCorrect: false
     }
 
+    shuffle = (qarr) => {
+		for (let i =0; i< qarr.length;i++) {
+			let j = i + Math.floor(Math.random() * (qarr.length-i));
+
+			let temp = qarr[j];
+			qarr[j] = qarr[i];
+			qarr[i] = temp;
+		}
+		return qarr;
+	}
+
     handleStart = () => {
-        this.setState({stage: "question"});
+        this.setState({stage: "question", questions: this.shuffle(this.state.questions)});
     }
 
     handleQuestionAnswer = (choice) => {
@@ -74,7 +85,7 @@ export class Provider extends Component {
     }
 
     handleRestart = () => {
-        this.setState({questionNumber: 0, correct: 0, stage:"question"});
+        this.setState({questionNumber: 0, correct: 0, stage:"question", questions: this.shuffle(this.state.questions)});
     }
 
     tick =  () => {

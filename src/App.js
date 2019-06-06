@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Timer from './components/Timer';
 import { Consumer } from './components/Context';
@@ -44,7 +43,7 @@ function App() {
         return (
           <div className="App">
             <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
+              <img src="https://external-preview.redd.it/vamnazEWjPlQWM3jZyVP6PbL_Ql93UCSfvb25Czrt4w.png?auto=webp&s=505cff58bedea30329c609c6cc1f3fe5e8ec4610" className="App-logo" alt="logo" />
             </header>
             {page}
           </div>

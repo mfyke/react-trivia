@@ -10,7 +10,7 @@ const GameResult = () => {
                     <div>
                         <h1>Game Over!</h1>
                         <h1>{`You got ${context.correct} out of ${context.questionNumber} correct!`}</h1>
-                        <Button variant="contained" color="primary" onClick={context.actions.restart}>Restart!</Button>
+                        <Button variant="contained" color="primary" className="restartButton" onClick={context.actions.restart}>Restart!</Button>
                     </div>
                 );
             }}

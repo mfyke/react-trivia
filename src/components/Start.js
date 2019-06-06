@@ -10,7 +10,7 @@ const Start = () => {
                     <div>
                         <h1>Welcome to Always Sunny Quote Trivia!</h1>
                         <h3>You will have 30 seconds per question. Press the start button below to begin the game.</h3>
-                        <Button variant="contained" color="primary" onClick={context.actions.start}>Start!</Button>
+                        <Button variant="contained" className="startButton" color="primary" onClick={context.actions.start}>Start!</Button>
                     </div>
                 );
             }}
